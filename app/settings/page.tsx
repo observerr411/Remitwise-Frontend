@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import {
-  ArrowLeft,
   Wallet,
   Bell,
   Globe,
@@ -21,6 +20,7 @@ import {
 } from "lucide-react";
 import SettingsSection from "@/components/SettingsSection";
 import SettingsItem from "@/components/SettingsItem";
+import SettingsHeader from "@/components/SettingsHeader";
 import PreferencesRow from "@/components/PreferencesRow";
 
 export default function SettingsPage() {
@@ -40,19 +40,8 @@ export default function SettingsPage() {
   const stellarAddress = "GCF2...7P3Q";
 
   return (
-    <main className="w-full min-h-screen bg-[#0F0F0F] md:px-[171.5px] px-[16px] font-inter">
-      {/* Header */}
-      <header className="bg-white border-b border-gray-200 sticky top-0 z-10">
-        <div className="w-full px-4 py-4 flex items-center">
-          <Link
-            href="/dashboard"
-            className="p-2 -ml-2 text-gray-600 hover:bg-gray-100 rounded-full transition-colors"
-          >
-            <ArrowLeft className="w-6 h-6" />
-          </Link>
-          <h1 className="ml-4 text-xl font-bold text-gray-900">Settings</h1>
-        </div>
-      </header>
+<main className="w-full min-h-screen bg-[#0F0F0F] md:px-[171.5px] px-[16px] font-inter">
+  <SettingsHeader />
 
       <div className="w-full py-6">
         {/* Account Section */}
