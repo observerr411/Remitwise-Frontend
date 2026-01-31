@@ -7,6 +7,7 @@ import {
   Bell,
   Globe,
   ShieldCheck,
+  Shield,
   Info,
   FileText,
   Clock,
@@ -29,6 +30,7 @@ import SettingsItem from "@/components/SettingsItem";
 import { AccountSection } from "@/components/AccountSection";
 import SettingsHeader from "@/components/SettingsHeader";
 import PreferencesRow from "@/components/PreferencesRow";
+import SecuritySection from "@/components/SecuritySection";
 
 export default function SettingsPage() {
   const [notifications, setNotifications] = useState({
@@ -39,8 +41,11 @@ export default function SettingsPage() {
   });
 
   const [security, setSecurity] = useState({
+    transactionSigning: false,
     autoSignTransactions: false,
   });
+
+  const [session , setSession] = useState("");
 
   const [currency, setCurrency] = useState("USD");
   const stellarAddress = "GCF2...7P3Q";
@@ -202,14 +207,28 @@ export default function SettingsPage() {
         </div>
 
         {/* Security Section */}
-        <SettingsSection 
-          title="Security" 
-          subtitle="Protect your account"
-          icon={<ShieldCheck className="w-5 h-5" />}
-        >
+        <div>
+           <div className="px-4 mb-3">
+            <div className="flex items-center gap-3 mb-1">
+              <div className="flex items-center justify-center bg-[#DC262633] w-[40px] h-[40px] rounded-[14px]">
+                <Shield className="w-[20px] h-[20px] text-[#DC2626]" />
+              </div>
+              <div>
+                <h2 className="text-lg font-bold text-[#FFFFFF]">
+                  Security
+                </h2>
+                <p className="text-[#FFFFFF80] text-[12px] -mt-1">
+                  Protect your account
+                </p>
+              </div>
+            </div>
+          </div>
+        <SettingsSection title="" variant="dark-card">
           <SettingsItem
-            icon={<Zap className="w-5 h-5" />}
-            title="Auto-sign Transactions"
+            variant="notification-row"
+            divider
+            icon= {<Zap className="w-5 h-5" />}
+            title="Auto-sign transactions"
             description="Skip confirmation for small amounts"
             type="toggle"
             enabled={security.autoSignTransactions}
@@ -217,14 +236,34 @@ export default function SettingsPage() {
               setSecurity({ ...security, autoSignTransactions: val })
             }
           />
-          <SettingsItem
-            icon={<Clock className="w-5 h-5" />}
-            title="Session Timeout"
-            description="Auto logout after inactivity"
-            type="dropdown"
-            hasDropdownBar
-          />
+
+          <SecuritySection
+              icon= {<Clock className="w-5 h-5" />}
+              title="Session Timeout"
+              description="Auto log out after inactivity"
+              rightContent={
+                <div className="relative">
+                  <select
+                    className="w-full text-white text-sm rounded-lg flex justify-center py-2 pr-8 px-10 appearance-none border border-zinc-800 focus:outline-none focus:border-[#FF4500] bg-black"
+                    value={session}
+                    onChange={(e) => setSession(e.target.value)}
+                  >
+                    <option value=""></option>
+                    <option value="5min">5 min</option>
+                    <option value="10min">10 min</option>
+                    <option value="1hour">1 hour</option>
+
+                  </select>
+                  <div className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none opacity-50">
+                    <ChevronDown className="w-5 h-5 text-gray-300" />
+                  </div>
+                </div>
+              }
+            />
+
         </SettingsSection>
+        </div>
+
 
         {/* About Section */}
         <div className="mb-8">
