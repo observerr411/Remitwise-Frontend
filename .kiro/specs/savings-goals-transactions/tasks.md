@@ -106,7 +106,7 @@
 - [ ] 11. Checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 12. Create integration documentation
+- [x] 12. Create integration documentation
   - Create `docs/api/savings-goals-transactions.md` with API documentation
   - Document all endpoints with request/response examples
   - Document all transaction builder functions
